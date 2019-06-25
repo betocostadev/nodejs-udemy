@@ -7,6 +7,8 @@ For the other projects there will be the use of node, mongodb and more. */
 
 // chalk: customize the terminal output with this npm module.
 const chalk = require('chalk');
+// yargs: better parsing strings:
+const yargs = require('yargs');
 // Asking for another file (use some modules);
 const getNotes = require('./notes.js');
 
@@ -15,8 +17,9 @@ console.log(`
 ${chalk.green.bold(notes)}
 `);
 
-const command = process.argv[2];
+/* Argv version of yargs is different: */
+console.log(yargs.argv);
 
-if (command === 'add') {
-  console.log(`Adding note!`);
-}
+// if (command === 'add') {
+//   console.log(`Adding note!`);
+// }
