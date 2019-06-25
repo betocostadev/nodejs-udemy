@@ -2,19 +2,15 @@
 /* Introduction to Node.js */
 
 // Node docs: https://nodejs.org/api/
+// nodemon npm module: https://www.npmjs.com/package/nodemon
+
+const chalk = require('chalk');
 
 console.log(`=== Node.js Developer Course ===`);
-console.log(`=== Using the file system ===`);
-
-// loading the module
-const fs = require('fs');
-
-fs.writeFileSync('notes.txt', 'This file was created by Node.js!');
-
-// Adding more to the file (append)
-const newText = `\nThis is the second line, it was added using fs.appendFileSync`;
-fs.appendFileSync('notes.txt', newText);
-
-// reading from the file:
-const textFromNotes = fs.readFileSync('notes.txt', 'utf-8');
-console.log(textFromNotes);
+console.log(`
+${chalk.bold('01-intro')}: This file
+${chalk.bold('02-fileSys')}: Some usage of the file system methods for node
+${chalk.bold('03-modules')}: Some modules like validator and chalk
+${chalk.bold('04-command-node')}: How to use arguments with node
+${chalk.bold('app.js')}: The app itself.
+`)
