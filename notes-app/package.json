@@ -1,0 +1,24 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "Notes App based on the course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/betocostadev/nodejs-udemy/tree/master/notes-app"
+  },
+  "keywords": [
+    "notes",
+    "app",
+    "udemy",
+    "course"
+  ],
+  "author": "Beto",
+  "license": "MIT",
+  "dependencies": {
+    "validator": "^11.0.0"
+  }
+}
