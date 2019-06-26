@@ -9,6 +9,31 @@ const getNotes = function () {
   return `Notes are...`;
 }
 
+// Remove notes function
+const removeNote = (title) => {
+  const notes = loadNotes();
+  // Making a variable to check if the note is not found
+  // const notFound = notes.filter(note => note.title === title);
+
+  const notesToKeep = notes.filter(note => note.title !== title).map(note => note);
+  // console.log(noteToRemove)
+
+  // if(notFound && noteToRemove) {
+  //   console.log(`Note title not found, please check.`);
+  // } else {
+  //   console.log(`Removed note: ${title}`);
+  // }
+
+  // Easy way, get all notes, except the one to remove, then map the remaining notes to the array
+  // Could have used another method like findIndex and use splice... more work.
+
+  // Write the new file with the remaining notes
+  console.log(`Removed note: ${title}`);
+  saveNotes(notesToKeep);
+}
+
+
+// Add notes function
 const addNote = (title, body) => {
   // Check notes first
   const notes = loadNotes()
@@ -24,11 +49,11 @@ const addNote = (title, body) => {
     saveNotes(notes);
     console.log(`Note added to your notes.`)
   } else {
-    console.log('Duplicate note! Please check your notes, or change the title.')
+    console.log(`Duplicate note! Please check your notes, or change the title.`)
   }
 }
 
-// Function to avoid some problems
+// Function to save the notes after passed all checks.
 const saveNotes = (notes) => {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync('./notes.json', dataJSON);
@@ -51,5 +76,6 @@ const loadNotes = () => {
 // module.exports = getNotes;
 module.exports = {
   getNotes: getNotes,
-  addNote: addNote
+  addNote: addNote,
+  removeNote: removeNote
 }

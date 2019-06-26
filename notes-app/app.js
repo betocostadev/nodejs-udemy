@@ -29,7 +29,10 @@ Yargs will be used to: add, remove, read and list notes.
 // create add command
 yargs.command({
   command: 'add', // command value
-  describe: 'Add a new note.', // Description of the command use --help to see
+  describe: `Add a new note. Usage:
+  node app.js --title="title of the note" --body="note body"
+  `,
+  // Description of the command use --help to see
   // Add a build. Builder is an object with the options we want the command to support.
   builder: {
     title: {
@@ -60,9 +63,19 @@ yargs.command({
 // create remove command
 yargs.command({
   command: 'remove',
-  describe: 'Remove a note.',
-  handler: function () {
-    console.log('Removing the note!');
+  describe: `Remove a note. Usage:
+  node app.js --title="note to be removed"
+  `,
+  builder: {
+    title: {
+      describe: `Title of the note to be removed (required)`,
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: function (argv) {
+    // console.log('Removing the note!');
+    notes.removeNote(argv.title)
   }
 })
 
