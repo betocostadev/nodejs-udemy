@@ -12,7 +12,7 @@ const chalk = require('chalk');
 // yargs: better parsing strings:
 const yargs = require('yargs');
 // Asking for another file (use some modules);
-const getNotes = require('./notes.js');
+const notes = require('./notes.js');
 
 
 /* Argv version of yargs is different: */
@@ -49,11 +49,11 @@ yargs.command({
   // We will add (argv) inside the function and in the code block. This is because:
   // It will handle argv as the command argument we want
   handler: function (argv) {
-    // console.log(`${chalk.green.bold('Adding a new note!')}`, argv);
-    console.log(argv);
-    console.log(`
-Title: ${argv.title}
-Note: ${argv.body}`);
+    // Testing:
+    // console.log(argv);
+    // console.log(`Title: ${argv.title} Note: ${argv.body}`);
+    // Actual function
+    notes.addNote(argv.title, argv.body)
   }
 })
 
@@ -88,7 +88,3 @@ yargs.command({
 // console.log(yargs.argv);
 yargs.parse(); // Using it instead of the console.log above.
 
-const notes = getNotes();
-console.log(`
-${chalk.green.bold(notes)}
-`);
