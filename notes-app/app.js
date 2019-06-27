@@ -15,7 +15,7 @@ const yargs = require('yargs');
 const notes = require('./notes.js');
 
 
-/* Argv version of yargs is different: */
+/* Argv version of yargs is different from the Node version: */
 // console.log(yargs.argv);
 
 // Change yargs version: check ver node app.js --version
@@ -29,8 +29,8 @@ Yargs will be used to: add, remove, read and list notes.
 // create add command
 yargs.command({
   command: 'add', // command value
-  describe: `Add a new note. Usage:
-  node app.js --title="title of the note" --body="note body"
+  describe: `Add a new note.
+  Usage: node app.js --title="title of the note" --body="note body"
   `,
   // Description of the command use --help to see
   // Add a build. Builder is an object with the options we want the command to support.
@@ -51,7 +51,7 @@ yargs.command({
   // add a code handler: The actual code that will run when someone uses 'add'.
   // We will add (argv) inside the function and in the code block. This is because:
   // It will handle argv as the command argument we want
-  handler: function (argv) {
+  handler(argv) {
     // Testing:
     // console.log(argv);
     // console.log(`Title: ${argv.title} Note: ${argv.body}`);
@@ -63,17 +63,17 @@ yargs.command({
 // create remove command
 yargs.command({
   command: 'remove',
-  describe: `Remove a note. Usage:
-  node app.js --title="note to be removed"
+  describe: `Remove a note.
+  Usage: node app.js --title="note to be removed"
   `,
   builder: {
     title: {
-      describe: `Title of the note to be removed (required)`,
+      describe: `Title of the note to be removed`,
       demandOption: true,
       type: 'string'
     }
   },
-  handler: function (argv) {
+  handler(argv) {
     // console.log('Removing the note!');
     notes.removeNote(argv.title)
   }
@@ -82,18 +82,29 @@ yargs.command({
 // create list command
 yargs.command({
   command: 'list',
-  describe: 'List all the notes.',
-  handler: function () {
-    console.log('Listing your notes:');
+  describe: `List all notes.
+  Usage: node app.js list
+  `,
+  handler() {
+    notes.listNotes();
   }
 })
 
 // create read command
 yargs.command({
   command: 'read',
-  describe: 'Read a note.',
-  handler: function () {
-    console.log('Reading your note:');
+  describe: `Read a note.
+  Usage: node app.js read --title="note to read"
+  `,
+  builder: {
+    title: {
+      describe: `Title of the note you want to read`,
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    notes.readNote(argv.title);
   }
 })
 
