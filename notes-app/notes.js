@@ -13,6 +13,12 @@ const addNote = (title, body) => {
   const notes = loadNotes()
   // Find duplicate notes
   const duplicateNote = notes.find(note => note.title === title);
+
+  // Node Debugger test: Uncomment the line with 'debugger' below and use the following command:
+  // node inspect app.js add --title="chastrufia" --body="The number is 42"
+  // open chrome and go to chrome://inspect
+  debugger;
+
   // Instead of filter, we are using find, because it will stop on the first one that matches.
   if (!duplicateNote) {
     notes.push({
