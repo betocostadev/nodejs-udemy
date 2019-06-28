@@ -30,7 +30,7 @@ Yargs will be used to: add, remove, read and list notes.
 yargs.command({
   command: 'add', // command value
   describe: `Add a new note.
-  Usage: node app.js --title="title of the note" --body="note body"
+  Usage: node app.js add --title="note title" --body="note body"
   `,
   // Description of the command use --help to see
   // Add a build. Builder is an object with the options we want the command to support.
@@ -64,7 +64,7 @@ yargs.command({
 yargs.command({
   command: 'remove',
   describe: `Remove a note.
-  Usage: node app.js --title="note to be removed"
+  Usage: node app.js remove --title="note to be removed"
   `,
   builder: {
     title: {
