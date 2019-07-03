@@ -17,14 +17,16 @@ json: true - parse data into json
 const forecast = (latitude, longitude, callback) => {
   const url = `${darkskyAPI}${latitude},${longitude}?${options[1]}&${options[3]}`
 
-  request({url: url, json: true}, (error, response)=> {
+  // Since the url is the same, there is no need to use {url: url}
+  // Since we know for the response we will use response.body, let's just destructure it:
+  request({url, json: true}, (error, { body })=> {
     if (error) {
       callback(`Unable to connect to weather service!`, undefined);
-    } else if (response.body.error) {
-      callback(`Error code: ${response.body.code}. ${response.body.error}`, undefined);
+    } else if (body.error) {
+      callback(`Error code: ${body.code}. ${body.error}`, undefined);
     } else {
-      callback(undefined, `${response.body.daily.data[0].summary} Temperatura: ${response.body.currently.temperature}°C, Precipitação: ${response.body.currently.precipProbability}%.
-Velocidade do Vento: ${response.body.currently.windSpeed} M/s (${ Math.floor(response.body.currently.windSpeed * 3.6)} K/h). Visibilidade: ${response.body.currently.visibility} M`);
+      callback(undefined, `${body.daily.data[0].summary} Temperatura: ${body.currently.temperature}°C, Precipitação: ${body.currently.precipProbability}%.
+Velocidade do Vento: ${body.currently.windSpeed} M/s (${ Math.floor(body.currently.windSpeed * 3.6)} K/h). Visibilidade: ${body.currently.visibility} M`);
     }
   })
 }

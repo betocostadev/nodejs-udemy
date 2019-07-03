@@ -12,18 +12,19 @@ const mapboxLimit = '&limit=1';
 const geocode = (address, callback) => {
   const url = `${mapboxAPI}${encodeURIComponent(address)}.json?${mapboxKey}${mapboxLimit}`;
 
-  request({ url: url, json: true}, (error, response) => {
+  // as in the forecast we will destructure response.body into body
+  request({ url: url, json: true}, (error, {body}) => {
     if (error) {
       callback(`Unable to connect to geolocation service!`, undefined);
-    } else if (response.body.message) {
-      callback(`Error: ${response.body.message}`, undefined);
-    } else if (response.body.features.length === 0) {
-      callback(`Unable to find location: ${response.body.query[0]}. Try again.`, undefined);
+    } else if (body.message) {
+      callback(`Error: ${body.message}`, undefined);
+    } else if (body.features.length === 0) {
+      callback(`Unable to find location: ${body.query[0]}. Try again.`, undefined);
     } else {
       callback(undefined, {
-        latitude: response.body.features[0].center[1],
-        longitude: response.body.features[0].center[0],
-        location: response.body.features[0]['place_name']
+        latitude: body.features[0].center[1],
+        longitude: body.features[0].center[0],
+        location: body.features[0]['place_name']
       });
     }
   })

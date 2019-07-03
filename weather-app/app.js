@@ -20,18 +20,19 @@ if (!address) {
   console.log(`Please, provide a location to search.
   Ex: node app.js "Somewhere"`);
 } else {
-  geocode(address, (error, data) => {
+  // geocode refactored for destructuring
+  geocode(address, (error, {latitude, longitude, location} ) => {
     if (error) {
       console.log(error);
     }
     // console.log('Error ', error)
     // console.log('Data ', data);
     // Get data latitude and longitude from geocode.
-    forecast(data.latitude, data.longitude, (error, forecastData) => {
+    forecast(latitude, longitude, (error, forecastData) => {
       if (error) {
         console.log(error);
       }
-      console.log(data.location);
+      console.log(location);
       console.log(forecastData);
     })
   })
