@@ -34,3 +34,8 @@ const add = (num1, num2, callback) => {
 add(1, 4, (sum) => {
   console.log(sum);
 });
+
+// Encoding URI:
+const endereco = 'São Paulo';
+const URI = encodeURIComponent(endereco);
+console.log(URI);

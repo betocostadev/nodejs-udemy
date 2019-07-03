@@ -14,12 +14,25 @@ const request = require('request');
 const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
-geocode('São Paulo', (error, data) => {
-  console.log('Error ', error)
-  console.log('Data ', data);
-})
+const address = process.argv[2];
 
-forecast(-23.474,-46.643, (error, data) => {
-  console.log('Error', error);
-  console.log('Data', data);
-})
+if (!address) {
+  console.log(`Please, provide a location to search.
+  Ex: node app.js "Somewhere"`);
+} else {
+  geocode(address, (error, data) => {
+    if (error) {
+      console.log(error);
+    }
+    // console.log('Error ', error)
+    // console.log('Data ', data);
+    // Get data latitude and longitude from geocode.
+    forecast(data.latitude, data.longitude, (error, forecastData) => {
+      if (error) {
+        console.log(error);
+      }
+      console.log(data.location);
+      console.log(forecastData);
+    })
+  })
+}
