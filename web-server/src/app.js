@@ -7,24 +7,27 @@
 // req = request | res = response
 // app.get('index', () => {}) - What we will serve. Let's say index.html or data.json
 
+// To access some files, express will need to know the path (absolute)
+const path = require('path')
 const express = require('express')
 
+// console.log(__filename)
+// console.log(path.join(__dirname, '../public'));
 const app = express()
+const publicDirPath = path.join(__dirname, '../public')
+// Customize the server with app.use()
+app.use(express.static(publicDirPath));
 
-app.get('', (req, res) => {
-  res.send(`<h1>Hello Express!</h1>`);
-})
-
-app.get('/help', (req, res) => {
-  res.send(`<h1>Help page</h1>`);
-})
-
+/* // Not needed any more since we are serving the files, just for show:
 app.get('/about', (req, res) => {
   res.send(`<h1>About page</h1>`);
-})
+}) */
 
 app.get('/weather', (req, res) => {
-  res.send(`<h1>Weather page</h1>`);
+  res.send({
+    location: 'São Paulo',
+    temperature: 25
+  });
 })
 
 // Start the server
