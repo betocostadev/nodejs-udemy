@@ -15,13 +15,37 @@ const express = require('express')
 // console.log(path.join(__dirname, '../public'));
 const app = express()
 const publicDirPath = path.join(__dirname, '../public')
+
+// Set express to work with HBS templating engine
+// Must use a views folder with the hbs files
+app.set('view engine', 'hbs')
 // Customize the server with app.use()
-app.use(express.static(publicDirPath));
+app.use(express.static(publicDirPath))
 
 /* // Not needed any more since we are serving the files, just for show:
 app.get('/about', (req, res) => {
   res.send(`<h1>About page</h1>`);
 }) */
+
+// Set express to render handlebars file:
+app.get('', (req, res) => {
+  res.render('index', {
+    title: 'Weather App',
+    name: 'Beto'
+  })
+})
+
+app.get('/about', (req, res) => {
+  res.render('about', {
+    title: 'Weather App',
+  })
+})
+
+app.get('/help', (req, res) => {
+  res.render('help', {
+    title: 'Weather App',
+  })
+})
 
 app.get('/weather', (req, res) => {
   res.send({
