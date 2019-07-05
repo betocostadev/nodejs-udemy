@@ -16,10 +16,35 @@ img, embed, object, video {
   max-width: 100%;
 }
 
-.img-small {
-  max-width: 20%;
+body {
+  color: #333;
+  max-width: 85vw;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+header {
+  margin: 1rem 0 2.5rem 0;
+}
+
+header a {
+  color: #888;
+  margin: 0.5rem 1rem 0.5rem 0;
+  text-decoration: none;
+}
+
+footer {
+  color: #888;
+  border-top: 1px solid #eee;
+  margin: 1rem 0 0 0;
+  padding: 1rem 0;
 }
 
 h1 {
-  color: grey;
+  font-size: 4rem;
+  margin: 1rem 0;
+}
+
+.profile-picture {
+  max-width: 20vw;
 }
