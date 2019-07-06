@@ -41,7 +41,8 @@ console.log(product);
 // console.log(rating);
 
 // Using a function:
-const transaction = (type, {label, stock}) => {
+// We are also using a default function param {} = {} to pass an object if none is provided.
+const transaction = (type, {label, stock} = {}) => {
   if (type === 'order') {
     product.order()
     console.log(type, label)
@@ -58,4 +59,5 @@ transaction('grelo', product);
 transaction('order', product);
 transaction('order', product);
 transaction('return', product);
+transaction('grelo');
 console.log(`After returning the last: ${product.stock}`);
