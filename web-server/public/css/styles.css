@@ -55,3 +55,19 @@ h1 {
 .profile-picture {
   max-width: 20vw;
 }
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  margin-right: 0.4rem;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.5rem;
+  border: 1px solid #888;
+  border-radius: 0.2rem;
+  background: #888;
+  color: white;
+}
