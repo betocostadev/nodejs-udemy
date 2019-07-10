@@ -39,3 +39,24 @@ add(1, 4, (sum) => {
 const endereco = 'São Paulo';
 const URI = encodeURIComponent(endereco);
 console.log(URI);
+
+
+setTimeout(() => {
+  console.log('\nSimple Callback Function:')
+}, 1900)
+// This is a simple callback to show how it's syntax is. Refer to 08-promises, to understand
+// the difference.
+
+const simpleCallback = (callback) => {
+  setTimeout(() => {
+    // callback('This is the error', undefined) // If returns the error
+    callback(undefined, 'This is the result!')
+  }, 2000)
+}
+
+simpleCallback((error, result) => {
+  if(error) {
+    return console.log(error)
+  }
+  console.log(result)
+})
