@@ -1,6 +1,13 @@
 /* MongoDB Playground | CRUD Operations
-Part 1 - Create */
+Part 1 - CREATE
+Contents:
+11 - Variables
+15 - Calling MongoDB
+22 - Insert One
+40 - Insert Many
 
+
+*/
 const { MongoClient, ObjectID } = require('mongodb')
 const connectionUrl = 'mongodb://127.0.0.1:27017'
 const databaseName = 'mongo-playground'
@@ -27,8 +34,8 @@ MongoClient.connect(connectionUrl, {useNewUrlParser: true}, (err, client) => {
     })
   }
 
-  addUser('Zeus', 6000, 'Greece', true);
-  addUser('Hera', 5400, 'Greece', true);
+  addUser('Tripto', 20, 'Uganda', false);
+  addUser('Jaison', 20, 'Uganda', false);
 
   // INSERT MANY
   // db.collection('users').insertMany([
