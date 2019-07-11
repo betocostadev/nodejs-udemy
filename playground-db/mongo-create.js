@@ -13,11 +13,12 @@ MongoClient.connect(connectionUrl, {useNewUrlParser: true}, (err, client) => {
   const db = client.db(databaseName)
 
   // INSERT ONE
-  const addUser = (name, age, location) => {
+  const addUser = (name, age, location, god) => {
     db.collection('users').insertOne({
       name,
       age,
-      location
+      location,
+      god
     }, (err, result) => {
       if(err) {
         return console.log(`Could not add a new user`)
@@ -26,19 +27,20 @@ MongoClient.connect(connectionUrl, {useNewUrlParser: true}, (err, client) => {
     })
   }
 
-  addUser('Jason', 43, 'Dublin');
+  addUser('Zeus', 6000, 'Greece', true);
+  addUser('Hera', 5400, 'Greece', true);
 
   // INSERT MANY
-  db.collection('users').insertMany([
-    { name: 'Odin', age: 5000, location: 'Asgard', god: true},
-    { name: 'Jesus', age: 2019, location: 'Jerusalem', god: false},
-    { name: 'Ra', age: 4719, location: 'Egypt', god: true}
-  ], (err, result) => {
-    if (err) {
-      return console.log(`Error, could not add many.`)
-    }
-    console.log(result.ops)
-  })
+  // db.collection('users').insertMany([
+  //   { name: 'Odin', age: 5000, location: 'Asgard', god: true},
+  //   { name: 'Jesus', age: 2019, location: 'Jerusalem', god: false},
+  //   { name: 'Ra', age: 4719, location: 'Egypt', god: true}
+  // ], (err, result) => {
+  //   if (err) {
+  //     return console.log(`Error, could not add many.`)
+  //   }
+  //   console.log(result.ops)
+  // })
 
 })
 
