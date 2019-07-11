@@ -1,0 +1,14 @@
+{
+  "name": "mongodb-playground",
+  "version": "1.0.0",
+  "description": "Simple playground to CRUDD Create, read, update, delete and destroy the DB",
+  "main": "mongo-create.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.2.7"
+  }
+}
