@@ -15,10 +15,25 @@ app.use('/', express.static(publicDirectoryPath))
 
 // Counter
 let count = 0
-// Use socket.io methods
+
+// server (emit) -> client (receive) = countUpdated
+// client (emit) -> server (receive) = increment
+
+// (socket) is an object with some methods
+// We will be working with the the public/js/chat.js file
 io.on('connection', (socket) => {
   console.log('New WebSocket connection')
 
+  socket.emit('countUpdated', count) // send to client
+
+  // Receiving the increment event from the client
+  socket.on('increment', () => {
+    count++
+    // socket.emit('countUpdated', count) // send back the updated count to the client
+    // Using the code below instead of the above... why?
+    // With socket.emit the count is updated for a single user, but it doesn't reflect to the others. This way it will work (try different browsers at the same time to check)
+    io.emit('countUpdated', count)
+  })
 })
 
 // Log that node server is running as expected
